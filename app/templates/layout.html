@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pokecard Store</title>
+    {% block style %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/spectre.min.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/spectre-exp.min.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/spectre-icons.min.css') }}">
+    {% endblock style %}
+</head>
+<body>
+    {% with messages =get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="toast toast-{{category}}">
+                <button class="btn btn-clear float-right"></button>
+                  {{ message | safe}}
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+    <header class="navbar bg-secondary">
+        <section class="navbar-section">
+            <a href="#" class="btn btn-link">Docs</a>
+            <a href="#" class="btn btn-link">Examples</a>
+        </section>
+        <section class="navbar-center">
+            <a href="/" title="Home page"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-0.png" width="50" alt="Svg Free Pokeball" /></a>
+        </section>
+        <section class="navbar-section">
+            <a href="#" class="btn btn-link">Twitter</a>
+            <a href="{{ url_for('user.signup') }}" class="btn btn-link">Sign Up</a>
+        </section>
+    </header>
+        {% block body%} {% endblock body %}
+    
+</body>
+</html>

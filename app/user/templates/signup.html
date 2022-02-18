@@ -1,0 +1,26 @@
+{% from 'macros/form.html' import render_form %}
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+    <div class="columns">
+        <form method="post" class="column col-4 col-mx-auto">
+            {{ form.hidden_tag() }}
+            <div class="form-group py-2">
+                {{ form.name.label(class_="form-label") }}
+                {{ render_form(form.name, class_="form-input") }}
+            </div>
+            <div class="form-group py-2">
+                {{ form.email.label(class_="form-label") }}
+                {{ render_form(form.email, class_="form-input") }}
+            </div>
+            <div class="form-group py-2">
+                {{ form.password.label(class_="form-label") }}
+                {{ render_form(form.password, class_="form-input") }}
+            </div>
+            <div class="form-group py-2">
+                {{ render_form(form.submit, class_="form-input btn btn-lg btn-success") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
