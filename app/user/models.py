@@ -1,8 +1,13 @@
-from app.extinsions import db
+from app.extinsions import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
-class User(db.Document):
-    _id = db.StringField()
+@login_manager.user_loader
+def load_user(user_id):
+    print(user_id)
+    return User.objects.get(pk=user_id)
+
+class User(db.Document, UserMixin):
     name = db.StringField()
     email = db.EmailField(domain_whitelist=['com'], unique = True)
     password = db.StringField()

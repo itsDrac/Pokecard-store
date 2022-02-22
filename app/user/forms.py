@@ -13,3 +13,13 @@ class SignupForm(FlaskForm):
         email = User.objects.filter(email=email.data).first()
         if email:
             raise ValidationError('This Email Is Already Taken')
+
+class LoginForm(FlaskForm):
+    email = EmailField('E-Mail', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('<-- Login --> ')
+
+    def validate_email(self, email):
+        email = User.objects.filter(email=email.data).first()
+        if not email:
+            raise ValidationError('This email isn\'t registered ')

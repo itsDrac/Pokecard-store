@@ -16,24 +16,32 @@
             {% for category, message in messages %}
             <div class="toast toast-{{category}}">
                 <button class="btn btn-clear float-right"></button>
-                  {{ message | safe}}
+                <p class="p-centered">
+                {{ message | safe}}
+                </p>
             </div>
             {% endfor %}
         {% endif %}
         {% endwith %}
 
     <header class="navbar bg-secondary">
-        <section class="navbar-section">
+        <section class="navbar-section mx-2">
             <a href="#" class="btn btn-link">Docs</a>
             <a href="#" class="btn btn-link">Examples</a>
         </section>
         <section class="navbar-center">
             <a href="/" title="Home page"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-0.png" width="50" alt="Svg Free Pokeball" /></a>
         </section>
-        <section class="navbar-section">
-            <a href="#" class="btn btn-link">Twitter</a>
+        {% if current_user.is_authenticated %}
+        <section class="navbar-section mx-2">
+            <a href="{{ url_for('user.logout') }}" class="btn btn-link">Logout</a>
+        </section>
+        {% else %}
+        <section class="navbar-section mx-2">
+            <a href="{{ url_for('user.login') }}" class="btn btn-link">Login</a>
             <a href="{{ url_for('user.signup') }}" class="btn btn-link">Sign Up</a>
         </section>
+        {% endif %}
     </header>
         {% block body%} {% endblock body %}
     
