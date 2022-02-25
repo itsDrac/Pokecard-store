@@ -1,10 +1,10 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import login_user, logout_user
-from app.user import user
+from app.user import user_bp as u
 from app.user.models import User
 from app.user.forms import SignupForm, LoginForm
 
-@user.route('/signup', methods = ['GET','POST'])
+@u.route('/signup', methods = ['GET','POST'])
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
@@ -14,7 +14,7 @@ def signup():
         return form.data
     return render_template('signup.html', form=form)
 
-@user.route('/login', methods = ['GET','POST'])
+@u.route('/login', methods = ['GET','POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -26,7 +26,7 @@ def login():
             flash("Incorrect credentials, Try again","error")
     return render_template('login.html', form=form)
 
-@user.route('/logout')
+@u.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('user.login'))
+    return redirect(url_for('user_bp.login'))

@@ -4,3 +4,9 @@ class UserView(ModelView):
     column_filters = ['name']
 
     column_searchable_list = ('name', 'password')
+
+class ProdView(ModelView):
+    pass
+
+class TypeView(ModelView):
+    pass

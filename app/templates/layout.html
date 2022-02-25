@@ -34,12 +34,12 @@
         </section>
         {% if current_user.is_authenticated %}
         <section class="navbar-section mx-2">
-            <a href="{{ url_for('user.logout') }}" class="btn btn-link">Logout</a>
+            <a href="{{ url_for('user_bp.logout') }}" class="btn btn-link">Logout</a>
         </section>
         {% else %}
         <section class="navbar-section mx-2">
-            <a href="{{ url_for('user.login') }}" class="btn btn-link">Login</a>
-            <a href="{{ url_for('user.signup') }}" class="btn btn-link">Sign Up</a>
+            <a href="{{ url_for('user_bp.login') }}" class="btn btn-link">Login</a>
+            <a href="{{ url_for('user_bp.signup') }}" class="btn btn-link">Sign Up</a>
         </section>
         {% endif %}
     </header>
