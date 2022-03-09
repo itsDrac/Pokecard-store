@@ -18,6 +18,7 @@ class Stats(db.EmbeddedDocument):
     speed = db.IntField(min_value=1, max_value=9, required=True)
 
 class Product(db.Document):
+    no = db.IntField(min_value=1, required=True, unique = True)
     name = db.StringField(required=True)
     img = db.URLField(required=True, unique=True)
     gen = db.IntField(min_value=1, max_value=9, required=True)

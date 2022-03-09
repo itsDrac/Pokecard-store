@@ -1,6 +1,7 @@
 from flask import Flask
 from app.extinsions import db, login_manager, admin as administrator
 from app.user import user_bp
+from app.product import prod_bp
 from app.admin import admin
 
 def creat_app():
@@ -12,6 +13,7 @@ def creat_app():
     administrator.init_app(app)
 
     app.register_blueprint(user_bp, url_prefix='/user')
+    app.register_blueprint(prod_bp, url_prefix='/prod')
     app.register_blueprint(admin)
 
     return app
