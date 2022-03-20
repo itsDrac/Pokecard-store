@@ -2,7 +2,7 @@
 E-commerce store using python flask
 
 ### [Pokemon database](https://pokemondb.net/pokedex/national)
-- pokemon added : 0
+- pokemon added : 1
 
 ### FAQs
 

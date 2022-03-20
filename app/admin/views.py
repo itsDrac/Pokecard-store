@@ -9,4 +9,4 @@ class ProdView(ModelView):
     pass
 
 class TypeView(ModelView):
-    pass
+    can_export = True

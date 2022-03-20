@@ -4,6 +4,9 @@ from app.user.models import User
 class Type(db.Document):
     name = db.StringField(max_length=30)
 
+    def __str__(self):
+        return f"{self.name}"
+
 class Data(db.EmbeddedDocument):
     types = db.ListField(db.ReferenceField(Type), min_entries = 1)
     species = db.StringField(max_length=30)
@@ -12,10 +15,10 @@ class Data(db.EmbeddedDocument):
     abilities = db.ListField(db.StringField(max_length=30), min_entries = 1)
 
 class Stats(db.EmbeddedDocument):
-    hp = db.IntField(min_value=1, max_value=9, required=True)
-    attack = db.IntField(min_value=1, max_value=9, required=True)
-    defense = db.IntField(min_value=1, max_value=9, required=True)
-    speed = db.IntField(min_value=1, max_value=9, required=True)
+    hp = db.IntField(min_value=1, required=True)
+    attack = db.IntField(min_value=1, required=True)
+    defense = db.IntField(min_value=1, required=True)
+    speed = db.IntField(min_value=1, required=True)
 
 class Product(db.Document):
     no = db.IntField(min_value=1, required=True, unique = True)

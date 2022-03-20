@@ -8,8 +8,8 @@
 <div class="container">
     <div class="columns m-2">
         <div class="column col-4 mx-1">
-            <img src="https://via.placeholder.com/400" alt="pokemon">
-        <h3 class="my-2">Pokemon Name</h3>
+            <img src="{{ poke.img }}" alt="pokemon">
+            <h3 class="my-2">{{ poke.name }}</h3>
         </div>
         <div class="divider-vert" data-content="Date"></div>
         <div class="column col-4 col-mr-auta mx-1">
@@ -27,43 +27,41 @@
                             <tr>
                                 <th>National No.</th>
                                 <td>
-                                    <span class="px-1">lorem5</span>
-                                    <span class="px-1">lorem5</span>
+                                    <span class="px-1">{{ poke.no }}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Types </th>
                                 <td>
-                                    <span class="px-1">lorem5</span>
-                                    <span class="px-1">lorem5</span>
+                                    {% for ty in poke.data.types %}
+                                    <span class="px-1">{{ ty.name }}</span>
+                                    {% endfor %}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Species </th>
                                 <td>
-                                    <span class="px-1">lorem5</span>
-                                    <span class="px-1">lorem5</span>
+                                    <span class="px-1">{{ poke.data.species }}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th>height </th>
                                 <td>
-                                    <span class="px-1">lorem5</span>
-                                    <span class="px-1">lorem5</span>
+                                    <span class="px-1">{{ poke.data.height }} m</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th>weight  </th>
                                 <td>
-                                    <span class="px-1">lorem5</span>
-                                    <span class="px-1">lorem5</span>
+                                    <span class="px-1">{{ poke.data.weight }} Kg</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th>abilities </th>
                                 <td>
-                                    <span class="px-1">lorem5</span>
-                                    <span class="px-1">lorem5</span>
+                                    {% for ab in poke.data.abilities %}
+                                    <span class="px-1">{{ ab }}</span>
+                                    {% endfor %}
                                 </td>
                             </tr>
                         </tbody>
@@ -82,17 +80,17 @@
         </div>
         <div class="column col-2 card">
             <div class="card-body">
-                <h4>HP: <span class="text-small text-muted">3660</span></h4>
-                <h4>Attack : <span class="text-small text-muted">3660</span></h4>
-                <h4>Defense : <span class="text-small text-muted">3660</span></h4>
-                <h4>Speed : <span class="text-small text-muted">3660</span></h4>
+                <h4>HP: <span class="text-small text-muted">{{ poke.stats.hp }}</span></h4>
+                <h4>Attack : <span class="text-small text-muted">{{ poke.stats.attack }}</span></h4>
+                <h4>Defense : <span class="text-small text-muted">{{ poke.stats.defense }}</span></h4>
+                <h4>Speed : <span class="text-small text-muted">{{ poke.stats.speed }}</span></h4>
             </div>
         </div>
     </div>
 </div>
 <script>
 new Chartist.Pie('.ct-chart', {
-        series: [20, 90, 50, 40]
+        series: [{{ poke.stats.hp }}, {{ poke.stats.attack }}, {{ poke.stats.defense }}, {{ poke.stats.speed }}]
     }, {
             donut: true,
             donutWidth: 30,
