@@ -8,3 +8,6 @@ E-commerce store using python flask
 
 #### Which css framwork are we using for this?
 Spectre.css V0.5.9, [ here ](https://picturepan2.github.io/spectre/getting-started.html) are docs.
+
+#### What database are we using 
+We are using Mongo DB with MongoEngine [here](http://docs.mongoengine.org/index.html) are docs. 
