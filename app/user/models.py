@@ -7,13 +7,18 @@ def load_user(user_id):
     print(user_id)
     return User.objects.get(pk=user_id)
 
+class Cart(db.EmbeddedDocument):
+    product = db.ReferenceField("Product", required = True)
+    quntity = db.IntField(min_value=1, required=True, default=1)
+
 class User(db.Document, UserMixin):
     name = db.StringField()
     email = db.EmailField(domain_whitelist=['com'], unique = True)
     password = db.StringField()
+    cart = db.EmbeddedDocumentListField(Cart)
 
     def __repr__(self):
-        return f"User[id : '{self._id}', Name : '{self.name}', Email : '{self.email}']"
+        return f"User[Name : '{self.name}', Email : '{self.email}', Cart: '{self.cart}']"
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
