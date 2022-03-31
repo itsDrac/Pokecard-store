@@ -23,6 +23,7 @@ class Stats(db.EmbeddedDocument):
 class Product(db.Document):
     no = db.IntField(min_value=1, required=True, unique = True)
     name = db.StringField(required=True)
+    price = db.IntField(min_value=10, required=True)
     img = db.URLField(required=True, unique=True)
     gen = db.IntField(min_value=1, max_value=9, required=True)
     data = db.EmbeddedDocumentField(Data)

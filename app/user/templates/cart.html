@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+    <div class="columns m-2">
+        <div class="column col-12">
+            <h4 class="text-center">Cart Page</h4>
+        </div>
+        <div class="column col-9">
+            {% set t = namespace(total=0) %}
+            {% for c in cart %}
+            <div class="card my-2 col-3">
+                <div class="card-image">
+                    <img class="img-responsive" src="{{ c.product.img }}" alt="">
+                </div>
+                <div class="card-header">
+                    <div class="card-title h4">{{ c.product.name }}</div>
+                </div>
+                <div class="card-footer">
+                    <a class="mx-2" href="{{ url_for('user_bp.update_cart',p_no=c.product.no, val=2) }}"><button class="btn btn-primary">+1</button></a>
+                    <b>{{ c.quntity }}</b>
+                    <a class="mx-2" href="{{ url_for('user_bp.update_cart',p_no=c.product.no, val=3) }}"><button class="btn btn-warning">-1</button></a>
+                    <a class="mx-2" href="{{ url_for('user_bp.update_cart',p_no=c.product.no, val=4) }}"><button class="btn btn-error">Remove</button></a>
+                </div>
+            </div>
+            {% set t.total = t.total+ (c.product.price * c.quntity) %}
+            {% endfor %}
+        </div>
+        <div class="column col-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title h5">Total: {{ t.total }} </div>
+                </div>
+                <div class="card-footer">
+                    <a href=""><button class="btn btn-success btn-lg">Order Now</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
