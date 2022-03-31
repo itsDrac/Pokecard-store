@@ -68,7 +68,9 @@
                     </table>
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-lg btn-success">Add to cart</button>
+                    <a href="{{ url_for('user_bp.update_cart',p_no= poke.no) }}">
+                        <button class="btn btn-lg btn-success">Add to cart</button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -1,8 +1,9 @@
 from flask import render_template, flash, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
 from app.user import user_bp as u
 from app.user.models import User
 from app.user.forms import SignupForm, LoginForm
+from app.product.models import Product
 
 @u.route('/signup', methods = ['GET','POST'])
 def signup():
@@ -30,3 +31,23 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('user_bp.login'))
+
+@u.get('/update_cart/<int:p_no>')
+@login_required
+def update_cart(p_no,val=1):
+    prod = Product.objects.filter(no=p_no).first()
+    p = current_user.cart.filter(product=prod).first()
+    if val == 1:
+        if not p:
+            current_user.cart.create(product=prod)
+    if val == 2:
+        if p:
+            p.quntity += 1
+    if val == 3:
+        if p:
+            p.quntity -= 1
+#    if val == 2:
+#        if p:
+#            p.quntity += 1
+    current_user.save()
+    return current_user.cart.objects
