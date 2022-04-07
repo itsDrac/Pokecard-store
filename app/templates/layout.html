@@ -34,6 +34,7 @@
         </section>
         {% if current_user.is_authenticated %}
         <section class="navbar-section mx-2">
+            <a href="{{ url_for('user_bp.cart') }}" class="btn btn-link">Cart</a>
             <a href="{{ url_for('user_bp.logout') }}" class="btn btn-link">Logout</a>
         </section>
         {% else %}
